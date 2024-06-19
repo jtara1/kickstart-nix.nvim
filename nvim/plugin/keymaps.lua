@@ -188,4 +188,4 @@ keymap.set('n', '<C-b>', '<C-b>zz', { desc = 'move UP full-page and center' })
 
 --- jtara1's additions
 -- view recently opened files
-keymap.set('n', '<C-e>', '<cmd>browse oldfiles<cr>', { noremap = true, silent = true, desc = 'view recently opened files' })
+-- keymap.set('n', '<C-e>', '<cmd>browse oldfiles<cr>', { noremap = true, silent = true, desc = 'view recently opened files' })

@@ -157,3 +157,7 @@ telescope.setup {
 
 telescope.load_extension('fzy_native')
 -- telescope.load_extension('smart_history')
+
+--- jtara1's additions
+-- search files
+vim.keymap.set('n', '<leader>e', project_files, { desc = '[t]elescope project files [g]' })
