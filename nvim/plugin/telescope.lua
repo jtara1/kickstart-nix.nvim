@@ -160,4 +160,5 @@ telescope.load_extension('fzy_native')
 
 --- jtara1's additions
 -- search files
-vim.keymap.set('n', '<leader>e', project_files, { desc = '[t]elescope project files [g]' })
+vim.keymap.set('n', '<C-e>', project_files, { desc = 'telescope search files' })
+vim.keymap.set('n', '<C-S-f>', fuzzy_grep, { desc = 'telescope search text' })
