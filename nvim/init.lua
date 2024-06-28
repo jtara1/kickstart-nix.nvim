@@ -100,7 +100,7 @@ vim.diagnostic.config {
 g.editorconfig = true
 
 vim.opt.colorcolumn = '100'
-vim.opt.guifont = "FiraCode Nerd Font Mono:h11"
+vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h11"
 
 -- Native plugins
 cmd.filetype('plugin', 'indent', 'on')
