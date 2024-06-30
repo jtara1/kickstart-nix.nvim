@@ -79,6 +79,7 @@ require('lualine').setup {
         theme = bubbles_theme,
         component_separators = '',
         section_separators = { left = '', right = '' },
+        icons_enabled = true,
     },
 
     inactive_sections = {

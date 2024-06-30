@@ -27,7 +27,7 @@ opt.showmatch = true -- Highlight matching parentheses, etc
 opt.incsearch = true
 opt.hlsearch = true
 
-opt.spell = true
+opt.spell = false
 opt.spelllang = 'en'
 
 opt.expandtab = true
@@ -100,7 +100,7 @@ vim.diagnostic.config {
 g.editorconfig = true
 
 vim.opt.colorcolumn = '100'
-vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h11"
+vim.opt.guifont = "Hack Nerd Font:h12"
 
 -- Native plugins
 cmd.filetype('plugin', 'indent', 'on')
