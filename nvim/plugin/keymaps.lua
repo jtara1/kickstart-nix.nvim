@@ -187,6 +187,25 @@ keymap.set('n', '<C-f>', '<C-f>zz', { desc = 'move DOWN [f]ull-page and center' 
 keymap.set('n', '<C-b>', '<C-b>zz', { desc = 'move UP full-page and center' })
 
 --- jtara1's additions
--- view recently opened files
--- keymap.set('n', '<C-e>', '<cmd>browse oldfiles<cr>', { noremap = true, silent = true, desc = 'view recently opened files' })
+-- region: copied from telescope.lua
+local builtin = require('telescope.builtin')
+local project_files = function()
+    local opts = {} -- define here if you want to define something
+    local ok = pcall(builtin.git_files, opts)
+    if not ok then
+        builtin.find_files(opts)
+    end
+end
+local function fuzzy_grep(opts)
+    opts = tbl_extend('error', opts or {}, { search = '', prompt_title = 'Fuzzy grep' })
+    builtin.grep_string(opts)
+end
+-- end region: copied from telescope.lua
+
+-- search files
+keymap.set('n', '<C-e>', project_files, { desc = 'telescope search files' })
+keymap.set('n', '<C-S-f>', fuzzy_grep, { desc = 'telescope search text' })
 keymap.set('n', '<A-1>', '<cmd>:Neotree<cr>', { noremap = true, silent = true, desc = 'View file tree' })
+keymap.set('n', '<C-x>', 'dd', { noremap = true, silent = true, desc = 'cut line' })
+-- ctrl + / toggle comment
+-- alt + 7 view outline
