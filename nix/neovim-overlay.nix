@@ -59,6 +59,7 @@ with final.pkgs.lib; let
     statuscol-nvim # Status column | https://github.com/luukvbaal/statuscol.nvim/
     nvim-treesitter-context # nvim-treesitter-context
     neo-tree-nvim
+    outline-nvim
     # ^ UI
     # language support
     # ^ language support
