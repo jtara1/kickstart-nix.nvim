@@ -207,5 +207,6 @@ keymap.set('n', '<C-e>', project_files, { desc = 'telescope search files' })
 keymap.set('n', '<C-S-f>', fuzzy_grep, { desc = 'telescope search text' })
 keymap.set('n', '<A-1>', '<cmd>:Neotree<cr>', { noremap = true, silent = true, desc = 'View file tree' })
 keymap.set('n', '<C-x>', 'dd', { noremap = true, silent = true, desc = 'cut line' })
+keymap.set('n', '<leader>wq', ':wqa<CR>', { noremap = true, silent = true })
 -- ctrl + / toggle comment
 -- alt + 7 view outline
