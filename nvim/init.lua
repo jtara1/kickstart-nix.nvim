@@ -110,7 +110,28 @@ cmd.packadd('cfilter') -- Allows filtering the quickfix list with :cfdo
 vim.g.sqlite_clib_path = require('luv').os_getenv('LIBSQLITE')
 
 vim.opt.autowrite = true
+
 vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
     pattern = { "*" },
-    command = "silent write"
+    callback = function()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local buftype = vim.bo[bufnr].buftype
+        local filetype = vim.bo[bufnr].filetype
+
+        -- List of buffer types and filetypes we don't want to auto-save
+        local excluded_types = {
+            "prompt", "nofile", "help", "quickfix", "terminal", "telescope"
+        }
+        local excluded_filetypes = {
+            "gitcommit", "gitrebase", "svg", "hgcommit"
+        }
+
+        if vim.tbl_contains(excluded_types, buftype) or vim.tbl_contains(excluded_filetypes, filetype) then
+            return
+        end
+
+        if vim.fn.expand('%') ~= '' and vim.bo.modified then
+            vim.cmd('silent! write')
+        end
+    end
 })
