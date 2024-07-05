@@ -78,7 +78,7 @@ end, { desc = '[t]elescope find [f]iles' })
 vim.keymap.set('n', '<M-p>', builtin.oldfiles, { desc = '[telescope] old files' })
 vim.keymap.set('n', '<C-g>', builtin.live_grep, { desc = '[telescope] live grep' })
 vim.keymap.set('n', '<leader>tt', builtin.live_grep, { desc = '[telescope] [t]ext via live grep' })
-vim.keymap.set('n', '<leader>tft', fuzzy_grep, { desc = '[t]elescope [f]uzzy [t]ext via grep' })
+vim.keymap.set('n', '<leader>tT', fuzzy_grep, { desc = '[t]elescope fuzzy [T]ext via grep' })
 vim.keymap.set('n', '<M-f>', fuzzy_grep_current_file_type, { desc = '[telescope] fuzzy grep filetype' })
 vim.keymap.set('n', '<M-g>', live_grep_current_file_type, { desc = '[telescope] live grep filetype' })
 vim.keymap.set(
