@@ -4,8 +4,8 @@ local opt = vim.o
 local g = vim.g
 
 -- <leader> key. Defaults to `\`. Some people prefer space.
--- g.mapleader = ' '
--- g.maplocalleader = ' '
+g.mapleader = ' '
+g.maplocalleader = ' '
 
 opt.compatible = false
 
@@ -135,3 +135,34 @@ vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
         end
     end
 })
+
+-- Function to delete without copying whitespace-only lines
+local function delete_without_copying_whitespace(count)
+    local start_line = vim.fn.line('.')
+    local end_line = start_line + count - 1
+    local all_whitespace = true
+
+    -- Check if all lines in the range are whitespace
+    for line = start_line, end_line do
+        if not vim.fn.getline(line):match('^%s*$') then
+            all_whitespace = false
+            break
+        end
+    end
+
+    -- If all lines are whitespace, clear the register before deleting
+    if all_whitespace then
+        vim.fn.setreg('"', '')
+    end
+
+    -- Delete the lines
+    vim.cmd('normal! ' .. count .. 'dd')
+end
+
+-- Function to handle the deletion command
+local function handle_delete()
+    local count = vim.v.count1  -- Get the count (default to 1 if not specified)
+    delete_without_copying_whitespace(count)
+end
+
+vim.keymap.set('n', 'd', handle_delete, { noremap = true, expr = true })
