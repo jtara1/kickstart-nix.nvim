@@ -148,8 +148,6 @@ local function load_exp_config()
     if vim.fn.filereadable(exp_path) == 1 then
         dofile(exp_path)
         print("Experimental config loaded from " .. exp_path)
-    else
-        print("Experimental config not found at " .. exp_path)
     end
 end
 
