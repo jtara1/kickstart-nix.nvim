@@ -136,8 +136,18 @@ vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
     end
 })
 
-require('exp')
-local experiment = vim.fn.stdpath("config") .. "/exp.lua"
-if vim.fn.filereadable(experiment) == 1 then
-    dofile(experiment)
+-- load ~/.config/nvim/exp.lua if exists
+local function get_config_home()
+    return os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")
 end
+
+local function load_exp_config()
+    local config_home = get_config_home()
+    local exp_path = config_home .. "/nvim/exp.lua"
+
+    if vim.fn.filereadable(exp_path) == 1 then
+        dofile(exp_path)
+    end
+end
+
+load_exp_config()
