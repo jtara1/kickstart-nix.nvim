@@ -202,13 +202,29 @@ local function fuzzy_grep(opts)
 end
 -- end region: copied from telescope.lua
 
--- search files
+-- region: neo-tree open/close keymap
+local function is_neo_tree_focused()
+    local current_buf = vim.api.nvim_get_current_buf()
+    local buf_name = vim.api.nvim_buf_get_name(current_buf)
+    return string.match(buf_name, "neo%-tree") ~= nil
+end
+
+-- open neotree or close if focus on it
+local function open_or_close_neo_tree()
+    if is_neo_tree_focused() then
+        vim.cmd("Neotree close")
+    else
+        vim.cmd("Neotree")
+    end
+end
+-- end region: neo-tree open/close keymap
+
 keymap.set('n', '<C-e>', project_files, { desc = 'telescope search files' })
 keymap.set('n', '<C-S-f>', fuzzy_grep, { desc = 'telescope search text' })
 keymap.set('n', '<C-f>', fuzzy_grep, { desc = 'telescope search text' })
-keymap.set('n', '<A-1>', '<cmd>:Neotree<cr>', { noremap = true, silent = true, desc = 'View file tree' })
+keymap.set('n', '<A-1>', open_or_close_neo_tree, { noremap = true, silent = true, desc = "Open/close file tree" })
 keymap.set('n', '<C-x>', 'dd', { noremap = true, silent = true, desc = 'cut line' })
 keymap.set('n', '<leader>qq', ':quitall<CR>', { noremap = true, silent = true })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { noremap=true })
 -- ctrl + / toggle comment
--- alt + 7 view outline
+-- alt + 7 view symbols outline
