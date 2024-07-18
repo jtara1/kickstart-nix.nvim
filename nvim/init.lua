@@ -135,3 +135,9 @@ vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
         end
     end
 })
+
+require('exp')
+local experiment = vim.fn.stdpath("config") .. "/exp.lua"
+if vim.fn.filereadable(experiment) == 1 then
+    dofile(experiment)
+end
